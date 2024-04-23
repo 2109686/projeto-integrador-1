@@ -22,7 +22,6 @@ class SupportController extends Controller
          */
 
         $supports = $support->all();
-        dd($supports);
 
         /**
          * Pode enviar para a view passando o array ou utilizando o compact
@@ -34,5 +33,20 @@ class SupportController extends Controller
          */
 
         return view('admin.supports.index', compact('supports'));
+    }
+
+    public function create ()
+    {
+        return view('admin.supports.create');
+    }
+
+    public function store (Request $request, Support $support)
+    {
+        $data = $request->all();
+        $data['status'] = 'a';
+
+        $support = $support->create($data);
+
+        return redirect()->route('supports.index');
     }
 }
