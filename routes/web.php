@@ -31,3 +31,4 @@ Route::post('/supports', [SupportController::class, 'store'])->name('supports.st
 Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
 Route::get('/supports/{id}/edit', [SupportController::class, 'edit'])->name('supports.edit');
 Route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
+Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
