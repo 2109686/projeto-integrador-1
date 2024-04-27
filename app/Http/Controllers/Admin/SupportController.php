@@ -49,4 +49,28 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
+
+    public function show (string|int $id, Support $support)
+    {
+        /**
+         * Possíveis formas de fazer a busca
+         *
+         *  Dessa forma a query busca direto o id:
+         * $support->find($id);
+         *
+         * Dessa forma é possível customizar o campo da busca, e retornar o primeiro resultado:
+         * $support->where('id', $id)->first();
+         *
+         * Dessa forma é possível customizar o campo da busca e o operador que pode ser = ou != ou >, etc.
+         * $support->where('id','=', $id)->first();
+         *
+         *
+         */
+        if (!$support = $support->find($id)) {
+            return back();
+        }
+
+        return view('admin.supports.show', compact('support'));
+
+    }
 }
