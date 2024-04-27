@@ -50,7 +50,7 @@ class SupportController extends Controller
         return redirect()->route('supports.index');
     }
 
-    public function show (string|int $id, Support $support)
+    public function show (Support $support, string|int $id)
     {
         /**
          * Possíveis formas de fazer a busca
@@ -72,5 +72,37 @@ class SupportController extends Controller
 
         return view('admin.supports.show', compact('support'));
 
+    }
+
+    public function edit(Support $support, string|int $id)
+    {
+        if (!$support = $support->where('id', $id)->first()) {
+            return back();
+        }
+
+        return view('admin.supports.edit', compact('support'));
+    }
+
+    public function update (Request $request, Support $support, string|int $id)
+    {
+        if (!$support = $support->find($id)) {
+            return back();
+        }
+
+        /**
+         * Outra forma de fazer, tanto cadastro quanto edição:
+         *
+         * $support->subject = $request->subject;
+         * $support->body = $request->subject;
+         * $support->save();
+         *
+         */
+
+        $support->update($request->only([
+            'subject',
+            'body',
+        ]));
+
+        return redirect()->route('supports.index');
     }
 }
