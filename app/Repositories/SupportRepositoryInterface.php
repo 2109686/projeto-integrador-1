@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\DTO\{
+use App\DTOs\Supports\{
     CreateSupportDTO,
     UpdateSupportDTO
 };
