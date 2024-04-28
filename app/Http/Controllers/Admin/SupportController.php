@@ -39,7 +39,12 @@ class SupportController extends Controller
          */
          //$supports = $support->all();
 
-         $supports = $this->service->getAll($request->filter);
+         //$supports = $this->service->getAll($request->filter);
+         $supports = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('per_page', 1),
+            filter: $request->filter,
+         );
 
         /**
          * Pode enviar para a view passando o array ou utilizando o compact
@@ -50,7 +55,11 @@ class SupportController extends Controller
          *
          */
 
-        return view('admin.supports.index', compact('supports'));
+        $filters = [
+            'filter' => $request->get('filter', ''),
+        ];
+
+        return view('admin.supports.index', compact('supports', 'filters'));
     }
 
     public function create ()
