@@ -147,7 +147,7 @@ class SupportController extends Controller
          * Assinatura nova do método: public function update (StoreUpdateSupport $request, string|int $id)
          */
 
-         $support = $this->service->update(
+        $support = $this->service->update(
             UpdateSupportDTO::makeFromRequest($request)
         );
 
