@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{SupportController};
+use App\Http\Controllers\Admin\{SupportController, ServicesController};
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/supports/{id}/edit', [SupportController::class, 'edit'])->name('supports.edit');
     Route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
     Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
+
+    Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
+    Route::post('/services', [ServicesController::class, 'store'])->name('services.store');
+
 });
 
 require __DIR__.'/auth.php';

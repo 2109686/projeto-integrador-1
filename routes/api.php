@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\SupportController;
+use App\Http\Controllers\Api\ServicesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->group(function() {
     Route::apiResource('/supports', SupportController::class);
+    Route::apiResource('/services', ServicesController::class);
 });
 
 
